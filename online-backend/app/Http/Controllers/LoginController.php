@@ -11,14 +11,13 @@ class LoginController extends Controller
         var_dump('test');
 
         $token = auth()->attempt(request(['email', 'password']));
-        var_dump($token);
         if(!$token) {
             return response()->json([
-                'message' => 'MRS'
-            ]);
+                'message' => 'Podaci nisu validni'
+            ], 400);
         } else {
             return response()->json([
-                'message' => 'Okey'
+                'message' => 'Uspesno ste se ulogoval',
             ]);
         }
         

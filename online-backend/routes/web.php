@@ -20,4 +20,5 @@ Route::get('/api/shops', 'ShopsController@index');
 Route::get('/api/users', 'UsersController@index');
 Route::get('/api/managers', 'ManagersController@index');
 Route::post('/api/login', 'LoginController@store');
+Route::post('/api/registration', 'RegisterController@store');
 
