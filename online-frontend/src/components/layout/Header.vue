@@ -8,8 +8,8 @@
 
             <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
-                <b-nav-item @click="goToLogin">Login</b-nav-item>
-                <b-nav-item @click="goToRegistration">Register</b-nav-item>
+                <AuthHeader v-if="isLoggedIn"></AuthHeader>
+                <UnAuthHeader v-if="!isLoggedIn"></UnAuthHeader>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->
@@ -42,16 +42,19 @@
 </template>
 
 <script>
-    export default {
-        methods: {
-            goToLogin() {
-                return this.$router.push({name: 'Login'})
-            },
+    import AuthHeader from './AuthHeader';
+    import UnAuthHeader from './UnAuthHeader';
 
-            goToRegistration() {
-                return this.$router.push({name: 'Registration'})
-            }
-        }
+    export default {
+       components: {
+           AuthHeader,
+           UnAuthHeader
+       },
+       computed: {
+           isLoggedIn() {
+               return this.$store.getters.isLoggedIn;
+           }
+       }
     }
 </script>
 

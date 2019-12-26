@@ -30,8 +30,8 @@
       <b-form-group id="input-group-4" label="Your Password:" label-for="input-4">
         <b-form-input
           id="input-4"
-          type="password"
           v-model="form.password"
+          type="password"
           required
           placeholder="Enter Password">
         </b-form-input>
@@ -54,13 +54,11 @@
           placeholder="Enter Role">
         </b-form-input>
       </b-form-group>
-
       <button type="submit" @click="submit">Submit</button>
     </div>
 </template>
 
 <script>
-
 import AuthService from '../../services/auth.service';
 
     export default {
@@ -81,9 +79,9 @@ import AuthService from '../../services/auth.service';
             submit() {
                 /* eslint-disable no-console */
                 console.log(this.form)
-                AuthService.createUser(this.form)
+                AuthService.createManager(this.form)
                 .then(() => {
-                    this.$router.push({ name: 'Login' })
+                    this.$router.push({ name: 'Managers' })
                 })
                 .catch((error) => {
                     console.log(error)
@@ -93,7 +91,7 @@ import AuthService from '../../services/auth.service';
     }
 </script>
 
+
 <style lang="scss" scoped>
 
 </style>
-

@@ -17,6 +17,7 @@
         <b-form-input
           id="input-2"
           v-model="form.password"
+          type ="password"
           required
           placeholder="Enter password" >
         </b-form-input>
@@ -40,11 +41,11 @@
         methods: {
             login() {
                 /* eslint-disable no-console */
-                console.log(this.form);
                 AuthService.login(this.form)
                     .then(() => {
-                        console.log('aasfsa')
-                        this.$router.push({name: 'Dashboard', query: { redirect: '/dashboard '}});
+                        console.log(this.$store.getters.isLoggedIn);
+                        this.$store.dispatch('SetLoggedInAction');
+                        this.$router.push({name: 'Home', query: { redirect: '/home '}});
                     })
                     .catch((error) => {
                         console.log(error)

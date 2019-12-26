@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Glavna stranica</h1>
+        <h1>MANAGER STRANICA</h1>
     </div>
 </template>
 
