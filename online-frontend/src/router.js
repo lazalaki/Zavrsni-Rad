@@ -5,12 +5,12 @@ Vue.use(Router);
 
 import Login from './components/auth/Login';
 import Registration from './components/auth/Registration';
-import Home from './components/Home';
 import Managers from './components/AllManagers'
 import CreateShops from './components/auth/CreateShops'
 import CreateManagers from './components/auth/CreateManagers'
 import AllShops from './components/AllShops';
 import Shop from './components/Shop';
+import SingleManager from './components/SingleManager'
 
 const router = new Router({
     linkActiveClass: 'active',
@@ -29,11 +29,6 @@ const router = new Router({
             path: '/registration',
             name: 'Registration',
             component: Registration
-        },
-        {
-            path: '/home',
-            name: 'Home',
-            component: Home
         },
         {
             path: '/managers',
@@ -59,6 +54,11 @@ const router = new Router({
             path: '/shops/:id',
             name: 'Shop',
             component: Shop
+        },
+        {
+            path: '/managers/:id',
+            name: 'SingleManager',
+            component: SingleManager
         }
     ]
 })

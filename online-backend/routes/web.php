@@ -25,4 +25,4 @@ Route::post('/api/shops/create', 'ShopsController@store');
 Route::post('/api/managers/create', 'ManagersController@store');
 Route::get('/api/managers/without-shop', 'ManagersController@managersWithoutShop');
 Route::get('/api/shops/{id}', 'ShopsController@shopById');
-
+Route::get('api/managers/{id}', 'ManagersController@show');

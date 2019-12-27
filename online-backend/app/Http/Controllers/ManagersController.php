@@ -38,4 +38,9 @@ class ManagersController extends Controller
 
         $manager->save();
     }
+
+    public function show($id) {
+        $manager = User::find($id);
+        return $manager;
+    }
 }

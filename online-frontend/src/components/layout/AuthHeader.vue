@@ -3,6 +3,7 @@
         <b-nav-item @click="AllShopsPage">Shops</b-nav-item>
         <b-nav-item @click="AllManagersPage">All Managers</b-nav-item>        
         <b-nav-item @click="createShop">Add Shop</b-nav-item>
+        <b-nav-item @click="createManager">Add Manager</b-nav-item>
         <b-nav-item >My Shop</b-nav-item>        
         <b-nav-item >Add Article</b-nav-item>
         <b-nav-item @click="logout">Logout</b-nav-item>
@@ -24,11 +25,15 @@
             },
 
             AllShopsPage() {
-                this.$router.push({ name: 'Home'})
+                this.$router.push({ name: 'AllShops'})
             },
 
             createShop() {
                 this.$router.push({name: 'CreateShops' })
+            },
+
+            createManager() {
+                this.$router.push({name: 'CreateManagers'})
             }
 
         }

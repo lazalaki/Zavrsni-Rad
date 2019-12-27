@@ -46,14 +46,7 @@
         </b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-6" label="Your Role:" label-for="input-6">
-        <b-form-input
-          id="input-6"
-          v-model="form.role"
-          required
-          placeholder="Enter Role">
-        </b-form-input>
-      </b-form-group>
+      
       <button type="submit" @click="submit">Submit</button>
     </div>
 </template>
@@ -70,7 +63,7 @@ import ManagerService from '../../services/managers.service';
                     email: '',
                     password: '',
                     url: '',
-                    role: ''
+                    
                 },
             }
         },

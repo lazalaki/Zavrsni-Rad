@@ -29,6 +29,11 @@ import ShopService from './../services/shops.service'
             }
         },
 
+            /* eslint-disable no-console */
+        mounted() {
+            console.log(this.$store.getters.isLoggedIn);
+        },
+
         created() {
             ShopService.getShops().then(response => {
                 this.shops = response;

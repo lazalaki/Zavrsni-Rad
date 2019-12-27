@@ -1,8 +1,11 @@
 <template>
     <div>
-        safsaf
-        <span>{{name}}</span>
-        <span>{{logo}}</span>
+        <ul>
+            <li>{{ name }}</li>
+            <li>{{ logo }} </li>
+        </ul>
+        
+        
     </div>
 </template>
 
