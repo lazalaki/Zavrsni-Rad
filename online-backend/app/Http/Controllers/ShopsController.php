@@ -15,6 +15,11 @@ class ShopsController extends Controller
         return $shops;
     }
 
+    public function shopById($id) {
+        $shop = Shop::find($id);
+        return $shop;
+    }
+
     public function store(ShopsRequest $request) {
         $shop = new Shop();
         $shop->name = $request->input('name');

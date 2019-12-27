@@ -9,6 +9,8 @@ import Home from './components/Home';
 import Managers from './components/AllManagers'
 import CreateShops from './components/auth/CreateShops'
 import CreateManagers from './components/auth/CreateManagers'
+import AllShops from './components/AllShops';
+import Shop from './components/Shop';
 
 const router = new Router({
     linkActiveClass: 'active',
@@ -47,8 +49,17 @@ const router = new Router({
             path: '/managers/create',
             name: 'CreateManagers',
             component: CreateManagers
+        },
+        {
+            path: '/shops',
+            name: 'AllShops',
+            component: AllShops
+        },
+        {
+            path: '/shops/:id',
+            name: 'Shop',
+            component: Shop
         }
-
     ]
 })
 

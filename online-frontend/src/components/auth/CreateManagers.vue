@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import AuthService from '../../services/auth.service';
+import ManagerService from '../../services/managers.service';
 
     export default {
         data() {
@@ -79,7 +79,7 @@ import AuthService from '../../services/auth.service';
             submit() {
                 /* eslint-disable no-console */
                 console.log(this.form)
-                AuthService.createManager(this.form)
+                ManagerService.createManager(this.form)
                 .then(() => {
                     this.$router.push({ name: 'Managers' })
                 })

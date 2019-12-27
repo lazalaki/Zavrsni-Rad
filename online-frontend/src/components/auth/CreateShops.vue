@@ -33,7 +33,7 @@
 
 <script>
 
-import AuthService from '../../services/auth.service';
+import ShopService from '../../services/shops.service'
 import ManagerService from '../../services/managers.service'
 
     export default {
@@ -56,7 +56,7 @@ import ManagerService from '../../services/managers.service'
         methods: {
             submit() {
                 console.log(this.form)
-                AuthService.createShop(this.form)
+                ShopService.createShop(this.form)
                 .then(() => {
                     this.$router.push({ name: 'Home' })
                 })
