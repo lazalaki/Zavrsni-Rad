@@ -11,13 +11,38 @@ class ShopsController extends Controller
 {
     public function index() {
 
-        $shops = Shop::all();
+        $shops = Shop::orderBy('created_at', 'desc')->with('managers')->limit(10)->get();
+        $count = Shop::all()->count();
+        $response = [
+            'shops' => $shops,
+            'count' => $count
+        ];
+            
+        return json_encode(array('response' => $response));
+        // return $shops;
+    }
+
+    public function getMore(Request $request) {
+        $offset = $request->query('offset');
+        $shops = Shop::orderBy('created_at', 'desc')->with('managers')->limit(10)->offset($offset)->get();
+        
         return $shops;
     }
 
     public function shopById($id) {
         $shop = Shop::find($id);
-        return $shop;
+        $articles = $shop->articles;
+        $response = [
+            'articles' => $articles,
+            'shop' => $shop
+        ];
+            
+        return json_encode(array('response' => $response));
+    }
+
+    public function findArticle($id) {
+        $shop = Shop::find($id);
+        return $shop->articles();
     }
 
     public function store(ShopsRequest $request) {
@@ -26,10 +51,9 @@ class ShopsController extends Controller
         $shop->logo = $request->input('logo');
 
         $shop->save();
-
-        $manager = User::find($request->input('managerId'));
-        // $managersTosave[] = $manager;
-        // $shop->managers()->saveMany($managersTosave);
-        $shop->managers()->save($manager);
+        if ($request->input('managerId')) {
+            $manager = User::find($request->input('managerId'));
+            $shop->managers()->save($manager);
+        }
     }
 }

@@ -37,25 +37,32 @@
         </b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-5" label="Your Url;" label-for="input-5">
+            <b-form-group id="input-group-5" label="Confirm Password:" label-for="input-5">
         <b-form-input
           id="input-5"
+          type="password"
+          v-model="form.confirmPassword"
+          required
+          placeholder="Confirm Password">
+        </b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-6" label="Your Url:" label-for="input-6">
+        <b-form-input
+          id="input-6"
           v-model="form.url"
           required
           placeholder="Enter Url">
         </b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-6" label="Your Role:" label-for="input-6">
-        <b-form-input
-          id="input-6"
-          v-model="form.role"
-          required
-          placeholder="Enter Role">
-        </b-form-input>
-      </b-form-group>
+      <b-form-checkbox value="true" v-model="form.acceptedTerms">I accept terms and conditions</b-form-checkbox><br>
 
-      <button type="submit" @click="submit">Submit</button>
+      <button type="submit" @click="submit">Register</button>
+
+      <div class="error-container">
+        <span>{{error}}</span>
+      </div>
     </div>
 </template>
 
@@ -71,23 +78,39 @@ import AuthService from '../../services/auth.service';
                     lastName: '',
                     email: '',
                     password: '',
+                    confirmPassword: '',
                     url: '',
-                    role: ''
+                    role: '',
+                    acceptedTerms: false
                 },
+                error: '',
             }
         },
 
         methods: {
             submit() {
                 /* eslint-disable no-console */
-                console.log(this.form)
                 AuthService.createUser(this.form)
                 .then(() => {
-                    this.$router.push({ name: 'Login' })
+                    this.$router.push({ name: 'Login' });
+                    this.error = '';
                 })
                 .catch((error) => {
-                    console.log(error)
+                  let errorMessage = error[0];
+                  if (!errorMessage) {
+                    this.error = this.extractErrorMessage(error);
+                  } else {
+                    this.error = errorMessage;
+                  }
                 })
+            },
+            extractErrorMessage(error) {
+              let errorMessage = '';
+              Object.keys(error.errors).forEach(er => {
+                errorMessage = errorMessage + ' ' + error.errors[er][0];
+              })
+              console.log(errorMessage)
+              return errorMessage;
             }
         }
     }

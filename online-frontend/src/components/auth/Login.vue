@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Ja sam login</h1>
+        <h1> Login Page </h1>
         
         <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
             <b-form-input
@@ -23,6 +23,9 @@
         </b-form-input>
       </b-form-group>
       <button @click="login">Login</button>
+      <div class="error-container">
+        <span>{{error}}</span>
+      </div>
     </div>
 </template>
 
@@ -35,20 +38,21 @@
                 form: {
                     email: '',
                     password: ''
-                }
+                },
+                error: '',
             }
         },
         methods: {
             login() {
+                this.error = '';
                 /* eslint-disable no-console */
                 AuthService.login(this.form)
                     .then(() => {
-                        console.log(this.$store.getters.isLoggedIn);
                         this.$store.dispatch('SetLoggedInAction');
-                        this.$router.push({name: 'Home', query: { redirect: '/home '}});
+                        this.$router.push({name: 'AllShops', query: { redirect: '/shops '}});
                     })
                     .catch((error) => {
-                        console.log(error)
+                        this.error = error.message;
                     })
             }
         }

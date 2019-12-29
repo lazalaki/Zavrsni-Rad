@@ -10,7 +10,7 @@ class ManagersController extends Controller
 {
 
     public function index() {
-        $managers = User::where('role', '=', 'Manager')->get();
+        $managers = User::where('role', '=', 'Manager')->with('shops')->get();
         return $managers;
     }
 
@@ -41,6 +41,12 @@ class ManagersController extends Controller
 
     public function show($id) {
         $manager = User::find($id);
-        return $manager;
+        $shop = $manager->shops;
+        $response = [
+            'manager' => $manager,
+            'shop' => $shop
+        ];
+            
+        return json_encode(array('response' => $response));
     }
 }

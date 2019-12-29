@@ -24,10 +24,13 @@
       <option v-for="manager in managers" :value="manager.id" :key="manager.id">{{ manager.firstName }} {{ manager.lastName }}</option>
       
     </b-form-select>
-    
   </div>
 
       <button type="submit" @click="submit">Submit</button>
+    <button type="submit" @click="cancel">Cancel</button>
+      <div class="error-container">
+        <span>{{error}}</span>
+      </div>
     </div>
 </template>
 
@@ -45,7 +48,8 @@ import ManagerService from '../../services/managers.service'
                     logo: '',
                     managerId: ''
                 },
-                managers: []                
+                managers: [],
+                error: '',            
             }
         },
         created() {
@@ -55,15 +59,25 @@ import ManagerService from '../../services/managers.service'
         },
         methods: {
             submit() {
-                console.log(this.form)
+                this.error = '';
                 ShopService.createShop(this.form)
                 .then(() => {
-                    this.$router.push({ name: 'Home' })
+                    this.$router.push({ name: 'AllShops' })
                 })
                 .catch((error) => {
-                    console.log(error)
+                    this.error = this.extractErrorMessage(error);
                 })
             },
+            extractErrorMessage(error) {
+              let errorMessage = '';
+              Object.keys(error.errors).forEach(er => {
+                errorMessage = errorMessage + ' ' + error.errors[er][0];
+              })
+              return errorMessage;
+            },
+            cancel() {
+              this.$router.push({name: 'AllShops'})
+            }
         }
     }
 </script>

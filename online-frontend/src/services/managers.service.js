@@ -15,7 +15,7 @@ const ManagerService = {
     },
 
     async getManagersById(id) {
-        return await ApiService.get('/managers' + id)
+        return await ApiService.get('/managers/' + id)
     }
 
     

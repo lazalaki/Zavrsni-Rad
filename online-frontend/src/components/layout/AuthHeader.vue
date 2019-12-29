@@ -5,7 +5,6 @@
         <b-nav-item @click="createShop">Add Shop</b-nav-item>
         <b-nav-item @click="createManager">Add Manager</b-nav-item>
         <b-nav-item >My Shop</b-nav-item>        
-        <b-nav-item >Add Article</b-nav-item>
         <b-nav-item @click="logout">Logout</b-nav-item>
         
        
@@ -34,7 +33,7 @@
 
             createManager() {
                 this.$router.push({name: 'CreateManagers'})
-            }
+            },
 
         }
     }

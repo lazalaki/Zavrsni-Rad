@@ -8,8 +8,6 @@ class LoginController extends Controller
 {
     
     public function store() {
-        var_dump('test');
-
         $token = auth()->attempt(request(['email', 'password']));
         if(!$token) {
             return response()->json([

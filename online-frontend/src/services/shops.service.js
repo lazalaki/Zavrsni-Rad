@@ -11,6 +11,9 @@ const ShopService = {
     },
     async getShopById(id) {
         return await ApiService.get('/shops/' + id);
+    },
+    async getMore(offset) {
+        return await ApiService.get('/shops-more?offset=' + offset);
     }
 }
 
